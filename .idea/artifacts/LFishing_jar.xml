@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LFishing:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LFishing_jar</output-path>
+    <root id="archive" name="LFishing.jar">
+      <element id="module-output" name="LFishing" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/24.0.0/annotations-24.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/skinsrestorer/skinsrestorer-api/14.2.6/skinsrestorer-api-14.2.6.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
