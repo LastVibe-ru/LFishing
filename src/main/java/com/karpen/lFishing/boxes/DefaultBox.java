@@ -1,5 +1,6 @@
 package com.karpen.lFishing.boxes;
 
+import com.karpen.lFishing.models.Config;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,8 +17,14 @@ public class DefaultBox implements Listener {
 
     private final Map<Player, Inventory> playerInventories = new HashMap<>();
 
+    private Config config;
+
+    public DefaultBox(Config config){
+        this.config = config;
+    }
+
     public void openBox(Player player) {
-        Inventory inventory = Bukkit.createInventory(player, 27, ChatColor.BOLD + "Стандартная коробка");
+        Inventory inventory = Bukkit.createInventory(player, 27, ChatColor.BOLD + config.getDefaultName());
         playerInventories.put(player, inventory);
 
         List<ItemStack> items = generateRandomItems();

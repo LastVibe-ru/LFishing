@@ -3,6 +3,7 @@ package com.karpen.lFishing.listeners;
 import com.karpen.lFishing.boxes.DefaultBox;
 import com.karpen.lFishing.boxes.EpicBox;
 import com.karpen.lFishing.boxes.NormalBox;
+import com.karpen.lFishing.models.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -26,35 +27,38 @@ public class FishingListener implements Listener {
     private EpicBox epicBox;
     private NormalBox normalBox;
 
+    private Config config;
+
     private Random random = new Random();
 
-    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox) {
+    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config) {
         this.defaultBox = defaultBox;
         this.epicBox = epicBox;
         this.normalBox = normalBox;
+        this.config = config;
     }
 
     @EventHandler
     public void onPlayerFishing(PlayerFishEvent event) {
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
-            if (random.nextInt(0, 100) < 20) {
+            if (random.nextInt(0, 100) < config.getDefaultChance()) {
                 dropDefaultBox(event.getPlayer());
 
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
-                event.getPlayer().sendMessage("Вы поймали стандартную коробку!");
-            } else if (random.nextInt(0, 100) < 5) {
+                event.getPlayer().sendMessage(config.getDefaultMsg());
+            } else if (random.nextInt(0, 100) < config.getEpicChance()) {
                 dropEpicBox(event.getPlayer());
 
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
-                event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + "Вы поймали эпическую коробку!");
-            } else if (random.nextInt(0, 100) < 10){
+                event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + config.getEpicMsg());
+            } else if (random.nextInt(0, 100) < config.getNormalChance()){
                 dropNormalBox(event.getPlayer());
 
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
-                event.getPlayer().sendMessage("Вы поймали стандартную бочку!");
+                event.getPlayer().sendMessage(config.getNormalMsg());
             }
         }
     }
@@ -140,7 +144,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
-            meta.setDisplayName(ChatColor.WHITE + "Стандартная коробка");
+            meta.setDisplayName(ChatColor.WHITE + config.getDefaultName());
             NamespacedKey key = new NamespacedKey("lfishing", "default_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "default_box");
             item.setItemMeta(meta);
@@ -154,7 +158,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.WHITE + "Стандартная бочка");
+            meta.setDisplayName(ChatColor.WHITE + config.getNormalName());
             NamespacedKey key = new NamespacedKey("lfishing", "normal_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "normal_box");
             item.setItemMeta(meta);
@@ -168,7 +172,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.DARK_PURPLE + "Эпическая коробка");
+            meta.setDisplayName(ChatColor.DARK_PURPLE + config.getEpicName());
             NamespacedKey key = new NamespacedKey("lfishing", "epic_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "epic_box");
             item.setItemMeta(meta);

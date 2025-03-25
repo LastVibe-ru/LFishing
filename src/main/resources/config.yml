@@ -1,0 +1,20 @@
+# LFishing v1.1
+# karpen-dev - https://github.com/karpen-dev/
+
+# Chances
+chances:
+  default: 20
+  normal: 10
+  epic: 5
+
+# Messages
+msg:
+  default: "Вы поймали стандартную коробку!"
+  normal: "Вы поймали стандартную бочку!"
+  epic: "Вы поймали эпическую коробку!"
+
+# Box names
+names:
+  default: "Стандартная коробка"
+  normal: "Стандартная бочка"
+  epic: "Эпическая коробка"
