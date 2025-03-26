@@ -6,14 +6,14 @@ import com.karpen.lFishing.boxes.NormalBox;
 import com.karpen.lFishing.commands.ReloadCommand;
 import com.karpen.lFishing.commands.ReloadCompleter;
 import com.karpen.lFishing.commands.TopCommand;
-import com.karpen.lFishing.commands.TopCompleter;
 import com.karpen.lFishing.listeners.FishingListener;
-import com.karpen.lFishing.listeners.LoginListener;
 import com.karpen.lFishing.models.Config;
-import com.karpen.lFishing.utils.UserManager;
+import com.karpen.lFishing.utils.TopManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 public final class LFishing extends JavaPlugin {
 
@@ -21,18 +21,18 @@ public final class LFishing extends JavaPlugin {
     private EpicBox epicBox;
     private NormalBox normalBox;
 
-    private UserManager manager;
-
     private Config config;
 
+    private File file;
+
+    private TopManager topManager;
+
     private FishingListener fishingListener;
-    private LoginListener loginListener;
 
     private ReloadCommand reloadCommand;
     private ReloadCompleter reloadCompleter;
 
     private TopCommand topCommand;
-    private TopCompleter topCompleter;
 
     @Override
     public void onEnable() {
@@ -40,33 +40,35 @@ public final class LFishing extends JavaPlugin {
 
         loadConfig();
 
+        file = new File(getDataFolder(), "top.json");
+
+        if (!file.exists()){
+            getDataFolder().mkdirs();
+        }
+
         defaultBox = new DefaultBox(config);
         epicBox = new EpicBox(config);
         normalBox = new NormalBox(config);
 
-        manager = new UserManager(this);
+        topManager = new TopManager(file);
 
         reloadCommand = new ReloadCommand(config, this);
         reloadCompleter = new ReloadCompleter();
 
-        topCommand = new TopCommand(manager);
-        topCompleter = new TopCompleter();
+        topCommand = new TopCommand(topManager);
 
-        fishingListener = new FishingListener(defaultBox, epicBox, normalBox, config, manager);
-        loginListener = new LoginListener(manager);
+        fishingListener = new FishingListener(defaultBox, epicBox, normalBox, config, topManager);
 
         Bukkit.getPluginManager().registerEvents(defaultBox, this);
         Bukkit.getPluginManager().registerEvents(epicBox, this);
         Bukkit.getPluginManager().registerEvents(normalBox, this);
 
         Bukkit.getPluginManager().registerEvents(fishingListener, this);
-        Bukkit.getPluginManager().registerEvents(loginListener, this);
 
         getCommand("lfishing").setExecutor(reloadCommand);
         getCommand("lfishing").setTabCompleter(reloadCompleter);
 
-        getCommand("fishtop").setExecutor(topCommand);
-        getCommand("fishtop").setTabCompleter(topCompleter);
+        getCommand("topbox").setExecutor(topCommand);
     }
 
     public void loadConfig(){
