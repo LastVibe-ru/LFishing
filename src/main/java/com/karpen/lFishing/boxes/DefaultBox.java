@@ -51,7 +51,7 @@ public class DefaultBox implements Listener {
     private List<ItemStack> generateRandomItems() {
         List<ItemStack> items = new ArrayList<>();
         Random random = new Random();
-        int var = random.nextInt(0, 9);
+        int var = random.nextInt(0, 10);
 
         switch (var) {
             case 0:
@@ -154,6 +154,13 @@ public class DefaultBox implements Listener {
                 items.add(new ItemStack(Material.COBWEB, random.nextInt(1, 3)));
                 items.add(new ItemStack(Material.COBWEB, random.nextInt(1, 3)));
                 break;
+            case 9:
+                items.add(new ItemStack(Material.COBWEB, random.nextInt(1, 3)));
+                items.add(new ItemStack(Material.COBWEB, random.nextInt(1, 3)));
+                items.add(new ItemStack(Material.COBWEB, random.nextInt(1, 3)));
+                items.add(new ItemStack(Material.STICK, random.nextInt(1, 3)));
+                items.add(new ItemStack(Material.STICK, random.nextInt(1, 3)));
+                items.add(new ItemStack(Material.STICK, random.nextInt(1, 3)));
         }
         return items;
     }

@@ -4,6 +4,8 @@ import com.karpen.lFishing.boxes.DefaultBox;
 import com.karpen.lFishing.boxes.EpicBox;
 import com.karpen.lFishing.boxes.NormalBox;
 import com.karpen.lFishing.models.Config;
+import com.karpen.lFishing.utils.UserManager;
+import net.md_5.bungee.api.ChatMessageType;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -18,7 +20,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
+import ru.mrbrikster.chatty.api.ChattyApi;
+import ru.mrbrikster.chatty.api.chats.Chat;
+import ru.mrbrikster.chatty.api.events.ChattyMessageEvent;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class FishingListener implements Listener {
@@ -27,15 +36,18 @@ public class FishingListener implements Listener {
     private EpicBox epicBox;
     private NormalBox normalBox;
 
+    private UserManager manager;
+
     private Config config;
 
     private Random random = new Random();
 
-    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config) {
+    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config, UserManager manager) {
         this.defaultBox = defaultBox;
         this.epicBox = epicBox;
         this.normalBox = normalBox;
         this.config = config;
+        this.manager = manager;
     }
 
     @EventHandler
@@ -44,17 +56,23 @@ public class FishingListener implements Listener {
             if (random.nextInt(0, 100) < config.getDefaultChance()) {
                 dropDefaultBox(event.getPlayer());
 
+                manager.addDefault(event.getPlayer());
+
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
                 event.getPlayer().sendMessage(config.getDefaultMsg());
             } else if (random.nextInt(0, 100) < config.getEpicChance()) {
                 dropEpicBox(event.getPlayer());
 
+                manager.addEpic(event.getPlayer());
+
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
                 event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + config.getEpicMsg());
             } else if (random.nextInt(0, 100) < config.getNormalChance()){
                 dropNormalBox(event.getPlayer());
+
+                manager.addNormal(event.getPlayer());
 
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
