@@ -1,17 +1,21 @@
-# LFishing v1.1
+# LFishing v1.2
 # karpen-dev - https://github.com/karpen-dev/
 
 # Chances
 chances:
-  default: 20
-  normal: 10
-  epic: 5
+  default: 10
+  normal: 5
+  epic: 3
 
 # Messages
 msg:
   default: "Вы поймали стандартную коробку!"
   normal: "Вы поймали необычную коробку!"
   epic: "Вы поймали эпическую коробку!"
+
+reload:
+  args: "Используйте /lfishing reload"
+  done: "Плагин перезагружен"
 
 # Box names
 names:

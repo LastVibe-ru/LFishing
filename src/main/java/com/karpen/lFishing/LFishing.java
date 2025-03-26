@@ -3,6 +3,8 @@ package com.karpen.lFishing;
 import com.karpen.lFishing.boxes.DefaultBox;
 import com.karpen.lFishing.boxes.EpicBox;
 import com.karpen.lFishing.boxes.NormalBox;
+import com.karpen.lFishing.commands.ReloadCommand;
+import com.karpen.lFishing.commands.ReloadCompleter;
 import com.karpen.lFishing.listeners.FishingListener;
 import com.karpen.lFishing.models.Config;
 import org.bukkit.Bukkit;
@@ -19,6 +21,9 @@ public final class LFishing extends JavaPlugin {
 
     private FishingListener fishingListener;
 
+    private ReloadCommand reloadCommand;
+    private ReloadCompleter reloadCompleter;
+
     @Override
     public void onEnable() {
         config = new Config();
@@ -29,6 +34,9 @@ public final class LFishing extends JavaPlugin {
         epicBox = new EpicBox(config);
         normalBox = new NormalBox(config);
 
+        reloadCommand = new ReloadCommand(config, this);
+        reloadCompleter = new ReloadCompleter();
+
         fishingListener = new FishingListener(defaultBox, epicBox, normalBox, config);
 
         Bukkit.getPluginManager().registerEvents(defaultBox, this);
@@ -36,20 +44,26 @@ public final class LFishing extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(normalBox, this);
 
         Bukkit.getPluginManager().registerEvents(fishingListener, this);
+
+        getCommand("lfishing").setExecutor(reloadCommand);
+        getCommand("lfishing").setTabCompleter(reloadCompleter);
     }
 
-    private void loadConfig(){
+    public void loadConfig(){
         saveDefaultConfig();
 
         Configuration configuration = getConfig();
 
-        config.setDefaultChance(configuration.getInt("chances.default", 20));
-        config.setNormalChance(configuration.getInt("chances.normal", 10));
-        config.setEpicChance(configuration.getInt("chances.epic", 5));
+        config.setDefaultChance(configuration.getInt("chances.default", 10));
+        config.setNormalChance(configuration.getInt("chances.normal", 5));
+        config.setEpicChance(configuration.getInt("chances.epic", 3));
 
         config.setDefaultMsg(configuration.getString("msg.default", "Вы поймали стандартную коробку!"));
         config.setNormalMsg(configuration.getString("msg.normal", "Вы поймали стандартную бочку!"));
         config.setEpicMsg(configuration.getString("msg.epic", "Вы поймали эпическую коробку!"));
+
+        config.setErrArgs(configuration.getString("reload.args", "Используйте /lfishing reload"));
+        config.setReloadDone(configuration.getString("reload.done", "Плагин перезагружен"));
 
         config.setNormalName(configuration.getString("names.normal", "Стандартная коробка"));
         config.setDefaultName(configuration.getString("names.default", "Стандартная бочка"));

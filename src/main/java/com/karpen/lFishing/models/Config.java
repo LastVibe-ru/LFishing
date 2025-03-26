@@ -14,6 +14,9 @@ public class Config {
     private String normalMsg;
     private String epicMsg;
 
+    private String errArgs;
+    private String reloadDone;
+
     private String defaultName;
     private String normalName;
     private String epicName;
