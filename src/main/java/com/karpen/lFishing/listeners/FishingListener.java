@@ -58,7 +58,7 @@ public class FishingListener implements Listener {
 
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
-                event.getPlayer().sendMessage(config.getNormalMsg());
+                event.getPlayer().sendMessage(ChatColor.GREEN + config.getNormalMsg());
             }
         }
     }
