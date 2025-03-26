@@ -158,7 +158,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.WHITE + config.getNormalName());
+            meta.setDisplayName(ChatColor.GREEN + config.getNormalName());
             NamespacedKey key = new NamespacedKey("lfishing", "normal_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "normal_box");
             item.setItemMeta(meta);
