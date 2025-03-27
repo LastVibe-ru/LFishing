@@ -186,7 +186,7 @@ public class DefaultBox implements Listener {
     }
 
     private boolean isDefaultBox(ItemStack item) {
-        if (item == null || item.getType() != Material.CHEST) {
+        if (item == null || item.getType() != Material.PLAYER_HEAD) {
             return false;
         }
 

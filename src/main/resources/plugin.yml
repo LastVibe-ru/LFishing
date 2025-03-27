@@ -4,10 +4,15 @@ main: com.karpen.lFishing.LFishing
 api-version: '1.21'
 commands:
   lfishing:
-    usage: <command> <args>
+    usage: /lfishing reload
     description: Перезагружает плагин
     permission: karpen.lfishing
     permission-message: You don't have permission
+  getbox:
+    usage: /getbox <default | normal | epic>
+    description: Выдает коробку
+    permission: karpen.lfishing.getbox
+    permission-message: You don't have permission
   topbox:
-    usage: <command> <args>
+    usage: /topbox
     description: Показывает топ игроков

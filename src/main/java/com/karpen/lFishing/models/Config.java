@@ -18,6 +18,12 @@ public class Config {
     private String mifikMsg;
     private String legendMsg;
 
+    private String skinDefault;
+    private String skinNormal;
+    private String skinEpic;
+    private String skinMifik;
+    private String skinLegend;
+
     private String chatEpic;
     private String chatMifik;
     private String chatLegend;

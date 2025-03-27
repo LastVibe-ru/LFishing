@@ -22,6 +22,11 @@
       <option name="url" value="https://oss.sonatype.org/content/groups/public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="funkemunky" />
+      <option name="name" value="funkemunky" />
+      <option name="url" value="https://nexus.funkemunky.cc/content/repositories/releases/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="spigotmc-repo" />
       <option name="name" value="spigotmc-repo" />
       <option name="url" value="https://hub.spigotmc.org/nexus/content/repositories/snapshots/" />
@@ -30,6 +35,11 @@
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="acrylicstyle" />
+      <option name="name" value="acrylicstyle" />
+      <option name="url" value="https://repo2.acrylicstyle.xyz/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="jboss.community" />

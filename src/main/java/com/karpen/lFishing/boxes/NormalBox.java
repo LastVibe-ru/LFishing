@@ -179,7 +179,7 @@ public class NormalBox implements Listener {
     }
 
     private boolean isNormalBox(ItemStack item) {
-        if (item == null || item.getType() != Material.BARREL) {
+        if (item == null || item.getType() != Material.PLAYER_HEAD) {
             return false;
         }
 

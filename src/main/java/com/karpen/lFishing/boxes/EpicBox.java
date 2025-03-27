@@ -129,7 +129,7 @@ public class EpicBox implements Listener {
     }
 
     private boolean isEpicBox(ItemStack item) {
-        if (item == null || item.getType() != Material.ENDER_CHEST) {
+        if (item == null || item.getType() != Material.PLAYER_HEAD) {
             return false;
         }
 

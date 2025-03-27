@@ -4,6 +4,7 @@ import com.karpen.lFishing.boxes.DefaultBox;
 import com.karpen.lFishing.boxes.EpicBox;
 import com.karpen.lFishing.boxes.NormalBox;
 import com.karpen.lFishing.models.Config;
+import com.karpen.lFishing.utils.SkinManager;
 import com.karpen.lFishing.utils.TopManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -19,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class FishingListener implements Listener {
@@ -30,15 +32,17 @@ public class FishingListener implements Listener {
     private Config config;
 
     private TopManager manager;
+    private SkinManager skinManager;
 
     private Random random = new Random();
 
-    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config, TopManager manager) {
+    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config, TopManager manager, SkinManager skinManager) {
         this.defaultBox = defaultBox;
         this.epicBox = epicBox;
         this.normalBox = normalBox;
         this.config = config;
         this.manager = manager;
+        this.skinManager = skinManager;
     }
 
     @EventHandler
@@ -104,7 +108,7 @@ public class FishingListener implements Listener {
     }
 
     private boolean isDefaultBox(ItemStack item) {
-        if (item == null || item.getType() != Material.CHEST) {
+        if (item == null || item.getType() != Material.PLAYER_HEAD) {
             return false;
         }
 
@@ -119,7 +123,7 @@ public class FishingListener implements Listener {
     }
 
     private boolean isEpicBox(ItemStack item){
-        if (item == null || item.getType() != Material.ENDER_CHEST){
+        if (item == null || item.getType() != Material.PLAYER_HEAD){
             return false;
         }
 
@@ -134,7 +138,7 @@ public class FishingListener implements Listener {
     }
 
     private boolean isNormalBox(ItemStack item){
-        if (item == null || item.getType() != Material.BARREL){
+        if (item == null || item.getType() != Material.PLAYER_HEAD){
             return false;
         }
 
@@ -149,7 +153,7 @@ public class FishingListener implements Listener {
     }
 
     private void dropDefaultBox(Player player) {
-        ItemStack item = new ItemStack(Material.CHEST);
+        ItemStack item = skinManager.getHead(config.getSkinDefault());
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
@@ -163,7 +167,7 @@ public class FishingListener implements Listener {
     }
 
     private void dropNormalBox(Player player){
-        ItemStack item = new ItemStack(Material.BARREL);
+        ItemStack item = skinManager.getHead(config.getSkinNormal());
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
@@ -177,7 +181,7 @@ public class FishingListener implements Listener {
     }
 
     private void dropEpicBox(Player player){
-        ItemStack item = new ItemStack(Material.ENDER_CHEST);
+        ItemStack item = skinManager.getHead(config.getSkinEpic());
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){

@@ -9,6 +9,15 @@ chances:
   mifik: 1
   legend: 0.1
 
+# Skins
+# Use https://textures.minecraft.net/texture/ only!
+skin:
+  default: "https://textures.minecraft.net/texture/2cf5b1cfed1c27dd4c3bef6b9844994739851e46b3fc7fda1cbc25b80ab3b"
+  normal: "https://textures.minecraft.net/texture/f7145c0ee1cd493664fb1b26622db0492a1969a659931e7a3362d9071fbd4cf8"
+  epic: "https://textures.minecraft.net/texture/a1b96fc7d915b57f683493106704353d8837772dff51b20bf3bda09f2fa8b3ba"
+  mifik: "https://textures.minecraft.net/texture/2ff4242b1a17cf9ce781a1e33415bb19341f996ec1388ec126ee824af9e72a8d"
+  legend: "https://textures.minecraft.net/texture/cdf81449131dcdd3578899fcd9592e13f5cca57ae7481fd6710bb6ca85d65c9"
+
 # Messages
 msg:
   default: "Вы поймали стандартную коробку!"
