@@ -1,8 +1,6 @@
 package com.karpen.lFishing;
 
-import com.karpen.lFishing.boxes.DefaultBox;
-import com.karpen.lFishing.boxes.EpicBox;
-import com.karpen.lFishing.boxes.NormalBox;
+import com.karpen.lFishing.boxes.*;
 import com.karpen.lFishing.commands.*;
 import com.karpen.lFishing.listeners.FishingListener;
 import com.karpen.lFishing.models.Config;
@@ -19,6 +17,8 @@ public final class LFishing extends JavaPlugin {
     private DefaultBox defaultBox;
     private EpicBox epicBox;
     private NormalBox normalBox;
+    private MifikBox mifikBox;
+    private LegendBox legendBox;
 
     private Config config;
 
@@ -52,6 +52,8 @@ public final class LFishing extends JavaPlugin {
         defaultBox = new DefaultBox(config);
         epicBox = new EpicBox(config);
         normalBox = new NormalBox(config);
+        mifikBox = new MifikBox(config);
+        legendBox = new LegendBox(config);
 
         topManager = new TopManager(file);
         skinManager = new SkinManager();
@@ -64,11 +66,13 @@ public final class LFishing extends JavaPlugin {
 
         topCommand = new TopCommand(topManager);
 
-        fishingListener = new FishingListener(defaultBox, epicBox, normalBox, config, topManager, skinManager);
+        fishingListener = new FishingListener(defaultBox, epicBox, normalBox, config, topManager, skinManager, mifikBox, legendBox);
 
         Bukkit.getPluginManager().registerEvents(defaultBox, this);
         Bukkit.getPluginManager().registerEvents(epicBox, this);
         Bukkit.getPluginManager().registerEvents(normalBox, this);
+        Bukkit.getPluginManager().registerEvents(mifikBox, this);
+        Bukkit.getPluginManager().registerEvents(legendBox, this);
 
         Bukkit.getPluginManager().registerEvents(fishingListener, this);
 
@@ -86,11 +90,11 @@ public final class LFishing extends JavaPlugin {
 
         Configuration configuration = getConfig();
 
-        config.setDefaultChance(configuration.getInt("chances.default", 10));
-        config.setNormalChance(configuration.getInt("chances.normal", 5));
-        config.setEpicChance(configuration.getInt("chances.epic", 3));
-        config.setMifikChance(configuration.getInt("chances.mifik", 1));
-        config.setLegendChance(configuration.getInt("chances.legend", 0));
+        config.setDefaultChance(configuration.getDouble("chances.default", 10));
+        config.setNormalChance(configuration.getDouble("chances.normal", 5));
+        config.setEpicChance(configuration.getDouble("chances.epic", 3));
+        config.setMifikChance(configuration.getDouble("chances.mifik", 1));
+        config.setLegendChance(configuration.getDouble("chances.legend", 0.1));
 
         config.setDefaultMsg(configuration.getString("msg.default", "Вы поймали стандартную коробку!"));
         config.setNormalMsg(configuration.getString("msg.normal", "Вы поймали стандартную бочку!"));
@@ -98,11 +102,11 @@ public final class LFishing extends JavaPlugin {
         config.setMifikMsg(configuration.getString("msg.mifik", "Вы поймали мифическую коробку!"));
         config.setLegendMsg(configuration.getString("msg.legend", "Вы поймали легендарную коробку!"));
 
-        config.setSkinDefault(configuration.getString("skin.default", "https://lastvibe.ru/api/heads/default.png"));
-        config.setSkinNormal(configuration.getString("skin.normal", "https://lastvibe.ru/api/heads/normal.png"));
-        config.setSkinEpic(configuration.getString("skin.epic", "https://lastvibe.ru/api/heads/epic.png"));
-        config.setSkinMifik(configuration.getString("skin.mifik", "https://lastvibe.ru/api/heads/mifik.png"));
-        config.setSkinLegend(configuration.getString("skin.legend", "https://lastvibe.ru/api/heads/legend.png"));
+        config.setSkinDefault(configuration.getString("skin.default", "https://textures.minecraft.net/texture/2cf5b1cfed1c27dd4c3bef6b9844994739851e46b3fc7fda1cbc25b80ab3b"));
+        config.setSkinNormal(configuration.getString("skin.normal", "https://textures.minecraft.net/texture/f7145c0ee1cd493664fb1b26622db0492a1969a659931e7a3362d9071fbd4cf8"));
+        config.setSkinEpic(configuration.getString("skin.epic", "https://textures.minecraft.net/texture/a1b96fc7d915b57f683493106704353d8837772dff51b20bf3bda09f2fa8b3ba"));
+        config.setSkinMifik(configuration.getString("skin.mifik", "https://textures.minecraft.net/texture/2ff4242b1a17cf9ce781a1e33415bb19341f996ec1388ec126ee824af9e72a8d"));
+        config.setSkinLegend(configuration.getString("skin.legend", "https://textures.minecraft.net/texture/cdf81449131dcdd3578899fcd9592e13f5cca57ae7481fd6710bb6ca85d65c9"));
 
         config.setChatEpic(configuration.getString("chat.epic", " выловил эпическую коробку!"));
         config.setChatMifik(configuration.getString("chat.mifik", " выловил мифическую коробку!"));

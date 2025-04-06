@@ -1,8 +1,6 @@
 package com.karpen.lFishing.listeners;
 
-import com.karpen.lFishing.boxes.DefaultBox;
-import com.karpen.lFishing.boxes.EpicBox;
-import com.karpen.lFishing.boxes.NormalBox;
+import com.karpen.lFishing.boxes.*;
 import com.karpen.lFishing.models.Config;
 import com.karpen.lFishing.utils.SkinManager;
 import com.karpen.lFishing.utils.TopManager;
@@ -28,6 +26,8 @@ public class FishingListener implements Listener {
     private DefaultBox defaultBox;
     private EpicBox epicBox;
     private NormalBox normalBox;
+    private MifikBox mifikBox;
+    private LegendBox legendBox;
 
     private Config config;
 
@@ -36,19 +36,21 @@ public class FishingListener implements Listener {
 
     private Random random = new Random();
 
-    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config, TopManager manager, SkinManager skinManager) {
+    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config, TopManager manager, SkinManager skinManager, MifikBox mifikBox, LegendBox legendBox) {
         this.defaultBox = defaultBox;
         this.epicBox = epicBox;
+        this.mifikBox = mifikBox;
         this.normalBox = normalBox;
         this.config = config;
         this.manager = manager;
         this.skinManager = skinManager;
+        this.legendBox = legendBox;
     }
 
     @EventHandler
     public void onPlayerFishing(PlayerFishEvent event) {
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
-            if (random.nextInt(0, 100) < config.getDefaultChance()) {
+            if (random.nextDouble(0, 100) < config.getDefaultChance()) {
                 dropDefaultBox(event.getPlayer());
 
                 manager.increaseScore(event.getPlayer().getName());
@@ -56,7 +58,7 @@ public class FishingListener implements Listener {
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
                 event.getPlayer().sendMessage(config.getDefaultMsg());
-            } else if (random.nextInt(0, 100) < config.getEpicChance()) {
+            } else if (random.nextDouble(0, 100) < config.getEpicChance()) {
                 dropEpicBox(event.getPlayer());
 
                 manager.increaseScore(event.getPlayer().getName());
@@ -64,7 +66,7 @@ public class FishingListener implements Listener {
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
                 event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + config.getEpicMsg());
-            } else if (random.nextInt(0, 100) < config.getNormalChance()){
+            } else if (random.nextDouble(0, 100) < config.getNormalChance()){
                 dropNormalBox(event.getPlayer());
 
                 manager.increaseScore(event.getPlayer().getName());
@@ -72,6 +74,22 @@ public class FishingListener implements Listener {
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
 
                 event.getPlayer().sendMessage(ChatColor.GREEN + config.getNormalMsg());
+            } else if (random.nextDouble(0, 100) < config.getMifikChance()) {
+                dropMifikBox(event.getPlayer());
+
+                manager.increaseScore(event.getPlayer().getName());
+
+                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
+
+                event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + config.getMifikMsg());
+            } else if (random.nextDouble(0, 100) < config.getLegendChance()){
+                dropLegendBox(event.getPlayer());
+
+                manager.increaseScore(event.getPlayer().getName());
+
+                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
+
+                event.getPlayer().sendMessage(ChatColor.GOLD + config.getLegendMsg());
             }
         }
     }
@@ -84,25 +102,31 @@ public class FishingListener implements Listener {
             if (isDefaultBox(player.getInventory().getItemInMainHand())) {
                 defaultBox.openBox(player);
 
-                if (event.getAction() == Action.RIGHT_CLICK_BLOCK){
-                    event.setCancelled(true);
-                }
+                event.setCancelled(true);
             }
 
             if (isEpicBox(player.getInventory().getItemInMainHand())){
                 epicBox.openBox(player);
 
-                if (event.getAction() == Action.RIGHT_CLICK_BLOCK){
-                    event.setCancelled(true);
-                }
+                event.setCancelled(true);
             }
 
             if (isNormalBox(player.getInventory().getItemInMainHand())){
                 normalBox.openBox(player);
 
-                if (event.getAction() == Action.RIGHT_CLICK_BLOCK){
-                    event.setCancelled(true);
-                }
+                event.setCancelled(true);
+            }
+
+            if (isMifikBox(player.getInventory().getItemInMainHand())){
+                mifikBox.openBox(player);
+
+                event.setCancelled(true);
+            }
+
+            if (isLegendBox(player.getInventory().getItemInMainHand())){
+                legendBox.openBox(player);
+
+                event.setCancelled(true);
             }
         }
     }
@@ -152,6 +176,36 @@ public class FishingListener implements Listener {
         return false;
     }
 
+    private boolean isMifikBox(ItemStack item){
+        if (item == null || item.getType() != Material.PLAYER_HEAD){
+            return false;
+        }
+
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null){
+            NamespacedKey key = new NamespacedKey("lfishing", "mifik_box");
+            return meta.getPersistentDataContainer().has(key, PersistentDataType.STRING) &&
+                    "mifik_box".equals(meta.getPersistentDataContainer().get(key, PersistentDataType.STRING));
+        }
+
+        return false;
+    }
+
+    private boolean isLegendBox(ItemStack item){
+        if (item == null || item.getType() != Material.PLAYER_HEAD){
+            return false;
+        }
+
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null){
+            NamespacedKey key = new NamespacedKey("lfishing", "legend_box");
+            return meta.getPersistentDataContainer().has(key, PersistentDataType.STRING) &&
+                    "legend_box".equals(meta.getPersistentDataContainer().get(key, PersistentDataType.STRING));
+        }
+
+        return false;
+    }
+
     private void dropDefaultBox(Player player) {
         ItemStack item = skinManager.getHead(config.getSkinDefault());
         ItemMeta meta = item.getItemMeta();
@@ -188,6 +242,34 @@ public class FishingListener implements Listener {
             meta.setDisplayName(ChatColor.DARK_PURPLE + config.getEpicName());
             NamespacedKey key = new NamespacedKey("lfishing", "epic_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "epic_box");
+            item.setItemMeta(meta);
+        }
+
+        player.getWorld().dropItem(player.getLocation(), item);
+    }
+
+    private void dropMifikBox(Player player){
+        ItemStack item = skinManager.getHead(config.getSkinMifik());
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null){
+            meta.setDisplayName(ChatColor.LIGHT_PURPLE + config.getMifikName());
+            NamespacedKey key = new NamespacedKey("lfishing", "mifik_box");
+            meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "mifik_box");
+            item.setItemMeta(meta);
+        }
+
+        player.getWorld().dropItem(player.getLocation(), item);
+    }
+
+    private void dropLegendBox(Player player){
+        ItemStack item = skinManager.getHead(config.getSkinLegend());
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null){
+            meta.setDisplayName(ChatColor.GOLD + config.getLegendName());
+            NamespacedKey key = new NamespacedKey("lfishing", "legend_box");
+            meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "legend_box");
             item.setItemMeta(meta);
         }
 

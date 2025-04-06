@@ -42,8 +42,10 @@ public class GetBoxCommand implements CommandExecutor {
             case "default" -> dropDefaultBox(player);
             case "normal" -> dropNormalBox(player);
             case "epic" -> dropEpicBox(player);
+            case "mifik" -> dropMifikBox(player);
+            case "legend" -> dropLegendBox(player);
             default -> {
-                sender.sendMessage(ChatColor.RED + "Юзай /getbox <default | normal | epic>");
+                sender.sendMessage(ChatColor.RED + "Юзай /getbox <default | normal | epic | mifik>");
 
                 return true;
             }
@@ -92,6 +94,38 @@ public class GetBoxCommand implements CommandExecutor {
             meta.setDisplayName(ChatColor.DARK_PURPLE + config.getEpicName());
             NamespacedKey key = new NamespacedKey("lfishing", "epic_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "epic_box");
+            item.setItemMeta(meta);
+        }
+
+        player.getWorld().dropItem(player.getLocation(), item);
+
+        return true;
+    }
+
+    private boolean dropMifikBox(Player player){
+        ItemStack item = skinManager.getHead(config.getSkinMifik());
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null){
+            meta.setDisplayName(ChatColor.DARK_PURPLE + config.getMifikName());
+            NamespacedKey key = new NamespacedKey("lfishing", "mifik_box");
+            meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "mifik_box");
+            item.setItemMeta(meta);
+        }
+
+        player.getWorld().dropItem(player.getLocation(), item);
+
+        return true;
+    }
+
+    private boolean dropLegendBox(Player player){
+        ItemStack item = skinManager.getHead(config.getSkinLegend());
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null){
+            meta.setDisplayName(ChatColor.GOLD + config.getLegendName());
+            NamespacedKey key = new NamespacedKey("lfishing", "legend_box");
+            meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "legend_box");
             item.setItemMeta(meta);
         }
 

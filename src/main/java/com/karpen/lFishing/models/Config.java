@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Config {
-    private int defaultChance;
-    private int normalChance;
-    private int epicChance;
-    private int mifikChance;
-    private int legendChance;
+    private double defaultChance;
+    private double normalChance;
+    private double epicChance;
+    private double mifikChance;
+    private double legendChance;
 
     private String defaultMsg;
     private String normalMsg;

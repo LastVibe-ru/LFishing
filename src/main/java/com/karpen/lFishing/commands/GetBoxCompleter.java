@@ -19,6 +19,8 @@ public class GetBoxCompleter implements TabCompleter {
             suggestions.add("default");
             suggestions.add("normal");
             suggestions.add("epic");
+            suggestions.add("mifik");
+            suggestions.add("legend");
         }
 
         return suggestions;
