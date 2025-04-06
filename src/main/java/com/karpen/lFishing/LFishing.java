@@ -96,6 +96,13 @@ public final class LFishing extends JavaPlugin {
         config.setMifikChance(configuration.getDouble("chances.mifik", 1));
         config.setLegendChance(configuration.getDouble("chances.legend", 0.1));
 
+        config.setLuckChances(configuration.getBoolean("luck.enabled", true));
+        config.setDefaultLuckChance(configuration.getDouble("luck.default", 12));
+        config.setNormalLuckChance(configuration.getDouble("luck.normal", 8));
+        config.setEpicLuckChance(configuration.getDouble("luck.epic", 5));
+        config.setMifikLuckChance(configuration.getDouble("luck.mifik", 2));
+        config.setLegendLuckChance(configuration.getDouble("luck.legend", 0.8));
+
         config.setDefaultMsg(configuration.getString("msg.default", "Вы поймали стандартную коробку!"));
         config.setNormalMsg(configuration.getString("msg.normal", "Вы поймали стандартную бочку!"));
         config.setEpicMsg(configuration.getString("msg.epic", "Вы поймали эпическую коробку!"));

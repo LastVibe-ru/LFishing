@@ -1,4 +1,4 @@
-# LFishing v1.3
+# LFishing v1.4
 # karpen-dev - https://github.com/karpen-dev/
 
 # Chances
@@ -8,6 +8,17 @@ chances:
   epic: 3
   mifik: 1
   legend: 0.1
+
+# Luck chances
+luck:
+  # Enable this function
+  enabled: true
+
+  default: 12
+  normal: 8
+  epic: 5
+  mifik: 2
+  legend: 0.8
 
 # Skins
 # Use https://textures.minecraft.net/texture/ only!

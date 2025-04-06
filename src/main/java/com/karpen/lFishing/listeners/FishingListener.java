@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -50,46 +51,90 @@ public class FishingListener implements Listener {
     @EventHandler
     public void onPlayerFishing(PlayerFishEvent event) {
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
-            if (random.nextDouble(0, 100) < config.getDefaultChance()) {
-                dropDefaultBox(event.getPlayer());
+            if (config.getLuck() && isLuckRod(event.getPlayer())) {
+                if (random.nextDouble(0, 100) < config.getDefaultLuckChance()) {
+                    dropDefaultBox(event.getPlayer());
 
-                manager.increaseScore(event.getPlayer().getName());
+                    manager.increaseScore(event.getPlayer().getName());
 
-                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                event.getPlayer().sendMessage(config.getDefaultMsg());
-            } else if (random.nextDouble(0, 100) < config.getEpicChance()) {
-                dropEpicBox(event.getPlayer());
+                    event.getPlayer().sendMessage(config.getDefaultMsg());
+                } else if (random.nextDouble(0, 100) < config.getEpicLuckChance()) {
+                    dropEpicBox(event.getPlayer());
 
-                manager.increaseScore(event.getPlayer().getName());
+                    manager.increaseScore(event.getPlayer().getName());
 
-                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + config.getEpicMsg());
-            } else if (random.nextDouble(0, 100) < config.getNormalChance()){
-                dropNormalBox(event.getPlayer());
+                    event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + config.getEpicMsg());
+                } else if (random.nextDouble(0, 100) < config.getNormalLuckChance()) {
+                    dropNormalBox(event.getPlayer());
 
-                manager.increaseScore(event.getPlayer().getName());
+                    manager.increaseScore(event.getPlayer().getName());
 
-                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                event.getPlayer().sendMessage(ChatColor.GREEN + config.getNormalMsg());
-            } else if (random.nextDouble(0, 100) < config.getMifikChance()) {
-                dropMifikBox(event.getPlayer());
+                    event.getPlayer().sendMessage(ChatColor.GREEN + config.getNormalMsg());
+                } else if (random.nextDouble(0, 100) < config.getMifikLuckChance()) {
+                    dropMifikBox(event.getPlayer());
 
-                manager.increaseScore(event.getPlayer().getName());
+                    manager.increaseScore(event.getPlayer().getName());
 
-                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + config.getMifikMsg());
-            } else if (random.nextDouble(0, 100) < config.getLegendChance()){
-                dropLegendBox(event.getPlayer());
+                    event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + config.getMifikMsg());
+                } else if (random.nextDouble(0, 100) < config.getLegendLuckChance()) {
+                    dropLegendBox(event.getPlayer());
 
-                manager.increaseScore(event.getPlayer().getName());
+                    manager.increaseScore(event.getPlayer().getName());
 
-                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 5.0f);
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                event.getPlayer().sendMessage(ChatColor.GOLD + config.getLegendMsg());
+                    event.getPlayer().sendMessage(ChatColor.GOLD + config.getLegendMsg());
+                }
+            } else {
+                if (random.nextDouble(0, 100) < config.getDefaultChance()) {
+                    dropDefaultBox(event.getPlayer());
+
+                    manager.increaseScore(event.getPlayer().getName());
+
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
+
+                    event.getPlayer().sendMessage(config.getDefaultMsg());
+                } else if (random.nextDouble(0, 100) < config.getEpicChance()) {
+                    dropEpicBox(event.getPlayer());
+
+                    manager.increaseScore(event.getPlayer().getName());
+
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
+
+                    event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + config.getEpicMsg());
+                } else if (random.nextDouble(0, 100) < config.getNormalChance()) {
+                    dropNormalBox(event.getPlayer());
+
+                    manager.increaseScore(event.getPlayer().getName());
+
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
+
+                    event.getPlayer().sendMessage(ChatColor.GREEN + config.getNormalMsg());
+                } else if (random.nextDouble(0, 100) < config.getMifikChance()) {
+                    dropMifikBox(event.getPlayer());
+
+                    manager.increaseScore(event.getPlayer().getName());
+
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
+
+                    event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + config.getMifikMsg());
+                } else if (random.nextDouble(0, 100) < config.getLegendChance()) {
+                    dropLegendBox(event.getPlayer());
+
+                    manager.increaseScore(event.getPlayer().getName());
+
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
+
+                    event.getPlayer().sendMessage(ChatColor.GOLD + config.getLegendMsg());
+                }
             }
         }
     }
@@ -129,6 +174,13 @@ public class FishingListener implements Listener {
                 event.setCancelled(true);
             }
         }
+    }
+
+    private boolean isLuckRod(Player player) {
+        ItemStack item = player.getInventory().getItemInMainHand();
+        ItemMeta meta = item.getItemMeta();
+
+        return meta != null && item.getType().equals(Material.FISHING_ROD) && meta.hasEnchant(Enchantment.LUCK_OF_THE_SEA);
     }
 
     private boolean isDefaultBox(ItemStack item) {

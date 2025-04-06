@@ -12,6 +12,13 @@ public class Config {
     private double mifikChance;
     private double legendChance;
 
+    private boolean luckChances;
+    private double defaultLuckChance;
+    private double normalLuckChance;
+    private double epicLuckChance;
+    private double mifikLuckChance;
+    private double legendLuckChance;
+
     private String defaultMsg;
     private String normalMsg;
     private String epicMsg;
@@ -36,4 +43,8 @@ public class Config {
     private String epicName;
     private String mifikName;
     private String legendName;
+
+    public boolean getLuck(){
+        return luckChances;
+    }
 }
