@@ -6,13 +6,17 @@ import com.karpen.lFishing.listeners.FishingListener;
 import com.karpen.lFishing.models.Config;
 import com.karpen.lFishing.utils.SkinManager;
 import com.karpen.lFishing.utils.TopManager;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.mrbrikster.chatty.api.ChattyApi;
 
 import java.io.File;
 
 public final class LFishing extends JavaPlugin {
+
+    private ChattyApi chattyApi;
 
     private DefaultBox defaultBox;
     private EpicBox epicBox;
@@ -49,6 +53,12 @@ public final class LFishing extends JavaPlugin {
             getDataFolder().mkdirs();
         }
 
+        if (config.getChatty()){
+            getLogger().info("Use chatty mode");
+
+            chattyApi = ChattyApi.get();
+        }
+
         defaultBox = new DefaultBox(config);
         epicBox = new EpicBox(config);
         normalBox = new NormalBox(config);
@@ -66,7 +76,7 @@ public final class LFishing extends JavaPlugin {
 
         topCommand = new TopCommand(topManager);
 
-        fishingListener = new FishingListener(defaultBox, epicBox, normalBox, config, topManager, skinManager, mifikBox, legendBox);
+        fishingListener = new FishingListener(defaultBox, epicBox, normalBox, config, topManager, skinManager, mifikBox, legendBox, chattyApi);
 
         Bukkit.getPluginManager().registerEvents(defaultBox, this);
         Bukkit.getPluginManager().registerEvents(epicBox, this);
@@ -103,11 +113,14 @@ public final class LFishing extends JavaPlugin {
         config.setMifikLuckChance(configuration.getDouble("luck.mifik", 2));
         config.setLegendLuckChance(configuration.getDouble("luck.legend", 0.8));
 
+        config.setUsingChatty(configuration.getBoolean("chatty.using", true));
+        config.setChat(configuration.getString("chatty.chat", "global"));
+
         config.setDefaultMsg(configuration.getString("msg.default", "Вы поймали стандартную коробку!"));
         config.setNormalMsg(configuration.getString("msg.normal", "Вы поймали стандартную бочку!"));
-        config.setEpicMsg(configuration.getString("msg.epic", "Вы поймали эпическую коробку!"));
-        config.setMifikMsg(configuration.getString("msg.mifik", "Вы поймали мифическую коробку!"));
-        config.setLegendMsg(configuration.getString("msg.legend", "Вы поймали легендарную коробку!"));
+        config.setEpicMsg(configuration.getString("chat.epic", " выловил эпическую коробку!"));
+        config.setMifikMsg(configuration.getString("chat.mifik", " выловил мифическую коробку!"));
+        config.setLegendMsg(configuration.getString("chat.legend", " выловил легендарную коробку!"));
 
         config.setSkinDefault(configuration.getString("skin.default", "https://textures.minecraft.net/texture/2cf5b1cfed1c27dd4c3bef6b9844994739851e46b3fc7fda1cbc25b80ab3b"));
         config.setSkinNormal(configuration.getString("skin.normal", "https://textures.minecraft.net/texture/f7145c0ee1cd493664fb1b26622db0492a1969a659931e7a3362d9071fbd4cf8"));

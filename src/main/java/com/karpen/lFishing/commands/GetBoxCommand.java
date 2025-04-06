@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import ru.mrbrikster.chatty.api.ChattyApi;
 
 public class GetBoxCommand implements CommandExecutor {
 

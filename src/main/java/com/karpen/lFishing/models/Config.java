@@ -12,6 +12,9 @@ public class Config {
     private double mifikChance;
     private double legendChance;
 
+    private boolean usingChatty;
+    private String chat;
+
     private boolean luckChances;
     private double defaultLuckChance;
     private double normalLuckChance;
@@ -46,5 +49,9 @@ public class Config {
 
     public boolean getLuck(){
         return luckChances;
+    }
+
+    public boolean getChatty() {
+        return usingChatty;
     }
 }

@@ -118,5 +118,10 @@
             <version>24.0.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.Brikster</groupId>
+            <artifactId>Chatty</artifactId>
+            <version>v2.19.14</version>
+        </dependency>
     </dependencies>
 </project>

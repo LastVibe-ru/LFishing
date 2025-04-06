@@ -2,6 +2,7 @@ name: LFishing
 version: '1.4'
 main: com.karpen.lFishing.LFishing
 api-version: '1.21'
+softdepend: [ Chatty ]
 commands:
   lfishing:
     usage: /lfishing reload

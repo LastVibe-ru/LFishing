@@ -18,11 +18,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
+import ru.mrbrikster.chatty.api.ChattyApi;
 
 import java.io.IOException;
 import java.util.Random;
 
 public class FishingListener implements Listener {
+
+    private ChattyApi chattyApi;
 
     private DefaultBox defaultBox;
     private EpicBox epicBox;
@@ -37,7 +41,7 @@ public class FishingListener implements Listener {
 
     private Random random = new Random();
 
-    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config, TopManager manager, SkinManager skinManager, MifikBox mifikBox, LegendBox legendBox) {
+    public FishingListener(DefaultBox defaultBox, EpicBox epicBox, NormalBox normalBox, Config config, TopManager manager, SkinManager skinManager, MifikBox mifikBox, LegendBox legendBox, ChattyApi chattyApi) {
         this.defaultBox = defaultBox;
         this.epicBox = epicBox;
         this.mifikBox = mifikBox;
@@ -46,6 +50,8 @@ public class FishingListener implements Listener {
         this.manager = manager;
         this.skinManager = skinManager;
         this.legendBox = legendBox;
+        this.chattyApi = chattyApi;
+
     }
 
     @EventHandler
@@ -60,6 +66,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     event.getPlayer().sendMessage(config.getDefaultMsg());
+
                 } else if (random.nextDouble(0, 100) < config.getEpicLuckChance()) {
                     dropEpicBox(event.getPlayer());
 
@@ -67,7 +74,10 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + config.getEpicMsg());
+                    if (config.getChatty()){
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.DARK_PURPLE + event.getPlayer().getName() + config.getEpicMsg());
+                    }
+
                 } else if (random.nextDouble(0, 100) < config.getNormalLuckChance()) {
                     dropNormalBox(event.getPlayer());
 
@@ -76,6 +86,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     event.getPlayer().sendMessage(ChatColor.GREEN + config.getNormalMsg());
+
                 } else if (random.nextDouble(0, 100) < config.getMifikLuckChance()) {
                     dropMifikBox(event.getPlayer());
 
@@ -83,7 +94,10 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + config.getMifikMsg());
+                    if (config.getChatty()){
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.LIGHT_PURPLE + event.getPlayer().getName() + config.getMifikMsg());
+                    }
+
                 } else if (random.nextDouble(0, 100) < config.getLegendLuckChance()) {
                     dropLegendBox(event.getPlayer());
 
@@ -91,7 +105,10 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.GOLD + config.getLegendMsg());
+                    if (config.getChatty()){
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.GOLD + event.getPlayer().getName() + config.getLegendMsg());
+                    }
+
                 }
             } else {
                 if (random.nextDouble(0, 100) < config.getDefaultChance()) {
@@ -102,6 +119,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     event.getPlayer().sendMessage(config.getDefaultMsg());
+
                 } else if (random.nextDouble(0, 100) < config.getEpicChance()) {
                     dropEpicBox(event.getPlayer());
 
@@ -109,7 +127,10 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.DARK_PURPLE + config.getEpicMsg());
+                    if (config.getChatty()){
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.DARK_PURPLE + event.getPlayer().getName() + config.getEpicMsg());
+                    }
+
                 } else if (random.nextDouble(0, 100) < config.getNormalChance()) {
                     dropNormalBox(event.getPlayer());
 
@@ -125,7 +146,10 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + config.getMifikMsg());
+                    if (config.getChatty()){
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.LIGHT_PURPLE + event.getPlayer().getName() + config.getMifikMsg());
+                    }
+
                 } else if (random.nextDouble(0, 100) < config.getLegendChance()) {
                     dropLegendBox(event.getPlayer());
 
@@ -133,7 +157,10 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.GOLD + config.getLegendMsg());
+                    if (config.getChatty()){
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.GOLD + event.getPlayer().getName() + config.getLegendMsg());
+                    }
+
                 }
             }
         }

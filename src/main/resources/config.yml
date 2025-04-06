@@ -11,6 +11,7 @@ chances:
 
 # Luck chances
 luck:
+
   # Enable this function
   enabled: true
 
@@ -19,6 +20,13 @@ luck:
   epic: 5
   mifik: 2
   legend: 0.8
+
+# Chatty api
+chatty:
+  using: true
+
+  # Chat for chat msg
+  chat: "global"
 
 # Skins
 # Use https://textures.minecraft.net/texture/ only!
@@ -33,9 +41,6 @@ skin:
 msg:
   default: "Вы поймали стандартную коробку!"
   normal: "Вы поймали необычную коробку!"
-  epic: "Вы поймали эпическую коробку!"
-  mifik: "Вы поймали мифическую коробку!"
-  legend: "Вы поймали легендарную коробку!"
 
 # Chat msg
 # <playerName> + msg
