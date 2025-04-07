@@ -13,6 +13,7 @@ public class TopManager {
     public TopManager(File file) {
         this.topList = new ArrayList<>();
         this.file = file;
+
         loadTopFromFile();
     }
 

@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import ru.mrbrikster.chatty.api.ChattyApi;
 
 public class GetBoxCommand implements CommandExecutor {
 
@@ -26,13 +25,13 @@ public class GetBoxCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length != 1){
-            sender.sendMessage(ChatColor.RED + "Юзай /getbox <default | normal | epic>");
+            sender.sendMessage(ChatColor.RED + config.getUsingErr());
 
             return true;
         }
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(ChatColor.RED + "Не юзай с консоли");
+            sender.sendMessage(ChatColor.RED + config.getConsoleErr());
 
             return true;
         }
@@ -46,7 +45,7 @@ public class GetBoxCommand implements CommandExecutor {
             case "mifik" -> dropMifikBox(player);
             case "legend" -> dropLegendBox(player);
             default -> {
-                sender.sendMessage(ChatColor.RED + "Юзай /getbox <default | normal | epic | mifik>");
+                sender.sendMessage(ChatColor.RED + config.getUsingErr());
 
                 return true;
             }

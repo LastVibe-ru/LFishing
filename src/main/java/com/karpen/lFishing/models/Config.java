@@ -22,6 +22,12 @@ public class Config {
     private double mifikLuckChance;
     private double legendLuckChance;
 
+    private String topMsg;
+    private String topIsEmpty;
+
+    private String usingErr;
+    private String consoleErr;
+
     private String defaultMsg;
     private String normalMsg;
     private String epicMsg;

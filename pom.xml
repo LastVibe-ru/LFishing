@@ -6,7 +6,7 @@
 
     <groupId>com.karpen</groupId>
     <artifactId>LFishing</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
 
     <name>LFishing</name>
@@ -104,13 +104,6 @@
             <groupId>com.arcaniax</groupId>
             <artifactId>HeadDatabase-API</artifactId>
             <version>1.3.2</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.mojang/authlib -->
-        <dependency>
-            <groupId>com.mojang</groupId>
-            <artifactId>authlib</artifactId>
-            <version>3.13.56</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>

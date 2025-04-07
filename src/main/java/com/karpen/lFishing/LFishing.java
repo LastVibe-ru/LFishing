@@ -6,7 +6,6 @@ import com.karpen.lFishing.listeners.FishingListener;
 import com.karpen.lFishing.models.Config;
 import com.karpen.lFishing.utils.SkinManager;
 import com.karpen.lFishing.utils.TopManager;
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -74,7 +73,7 @@ public final class LFishing extends JavaPlugin {
         getBoxCommand = new GetBoxCommand(skinManager, config);
         getBoxCompleter = new GetBoxCompleter();
 
-        topCommand = new TopCommand(topManager);
+        topCommand = new TopCommand(topManager, config);
 
         fishingListener = new FishingListener(defaultBox, epicBox, normalBox, config, topManager, skinManager, mifikBox, legendBox, chattyApi);
 
@@ -128,9 +127,14 @@ public final class LFishing extends JavaPlugin {
         config.setSkinMifik(configuration.getString("skin.mifik", "https://textures.minecraft.net/texture/2ff4242b1a17cf9ce781a1e33415bb19341f996ec1388ec126ee824af9e72a8d"));
         config.setSkinLegend(configuration.getString("skin.legend", "https://textures.minecraft.net/texture/cdf81449131dcdd3578899fcd9592e13f5cca57ae7481fd6710bb6ca85d65c9"));
 
-        config.setChatEpic(configuration.getString("chat.epic", " выловил эпическую коробку!"));
-        config.setChatMifik(configuration.getString("chat.mifik", " выловил мифическую коробку!"));
-        config.setChatLegend(configuration.getString("chat.legend", " выловил легендарную коробку!"));
+        config.setChatEpic(configuration.getString("chat.epic", "%name% выловил эпическую коробку!").replace("%name%", ""));
+        config.setChatMifik(configuration.getString("chat.mifik", "%name% выловил мифическую коробку!").replace("%name%", ""));
+        config.setChatLegend(configuration.getString("chat.legend", "%name% выловил легендарную коробку!").replace("%name%", ""));
+
+        config.setTopMsg(configuration.getString("msg.top", "Топ игроков по количеству открытых коробок: "));
+        config.setTopIsEmpty(configuration.getString("msg.topIsEmpty", "Топ пуст >_<"));
+
+        config.setUsingErr(configuration.getString("msg.using", "Используй /getbox <default | normal | epic | mifik | legend>"));
 
         config.setErrArgs(configuration.getString("reload.args", "Используйте /lfishing reload"));
         config.setReloadDone(configuration.getString("reload.done", "Плагин перезагружен"));

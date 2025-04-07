@@ -18,10 +18,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.java.JavaPlugin;
 import ru.mrbrikster.chatty.api.ChattyApi;
 
-import java.io.IOException;
 import java.util.Random;
 
 public class FishingListener implements Listener {
