@@ -25,10 +25,10 @@ public class TopCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         List<PlayerTop> tops = manager.getTop(10);
 
-        commandSender.sendMessage(config.getTopMsg());
+        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getTopMsg()));
 
         if (tops.isEmpty()){
-            commandSender.sendMessage(ChatColor.RED + config.getTopIsEmpty());
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getTopIsEmpty()));
 
             return true;
         }

@@ -25,13 +25,13 @@ public class GetBoxCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length != 1){
-            sender.sendMessage(ChatColor.RED + config.getUsingErr());
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getUsingErr()));
 
             return true;
         }
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(ChatColor.RED + config.getConsoleErr());
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getConsoleErr()));
 
             return true;
         }
@@ -45,7 +45,7 @@ public class GetBoxCommand implements CommandExecutor {
             case "mifik" -> dropMifikBox(player);
             case "legend" -> dropLegendBox(player);
             default -> {
-                sender.sendMessage(ChatColor.RED + config.getUsingErr());
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getUsingErr()));
 
                 return true;
             }
@@ -59,7 +59,7 @@ public class GetBoxCommand implements CommandExecutor {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
-            meta.setDisplayName(ChatColor.WHITE + config.getDefaultName());
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getDefaultName()));
             NamespacedKey key = new NamespacedKey("lfishing", "default_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "default_box");
             item.setItemMeta(meta);
@@ -75,7 +75,7 @@ public class GetBoxCommand implements CommandExecutor {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.GREEN + config.getNormalName());
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getNormalName()));
             NamespacedKey key = new NamespacedKey("lfishing", "normal_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "normal_box");
             item.setItemMeta(meta);
@@ -91,7 +91,7 @@ public class GetBoxCommand implements CommandExecutor {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.DARK_PURPLE + config.getEpicName());
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getEpicName()));
             NamespacedKey key = new NamespacedKey("lfishing", "epic_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "epic_box");
             item.setItemMeta(meta);
@@ -107,7 +107,7 @@ public class GetBoxCommand implements CommandExecutor {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.DARK_PURPLE + config.getMifikName());
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getMifikName()));
             NamespacedKey key = new NamespacedKey("lfishing", "mifik_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "mifik_box");
             item.setItemMeta(meta);
@@ -123,7 +123,7 @@ public class GetBoxCommand implements CommandExecutor {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.GOLD + config.getLegendName());
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getLegendName()));
             NamespacedKey key = new NamespacedKey("lfishing", "legend_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "legend_box");
             item.setItemMeta(meta);

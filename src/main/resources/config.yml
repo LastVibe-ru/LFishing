@@ -1,8 +1,7 @@
-# LFishing v1.5
+# LFishing v1.5.1
 # karpen-dev - https://github.com/karpen-dev/
 
-# AMPERSAND COLOROS DOESN'T WORK NOW
-# CAN BE FIXED SOON...
+# Supported only & colors and §
 
 # Chances
 chances:
@@ -44,36 +43,35 @@ skin:
 msg:
 
   # Drop box messages
-  default: "Вы поймали стандартную коробку!"
-  normal: "Вы поймали необычную коробку!"
+  default: "&7Вы поймали стандартную коробку!"
+  normal: "&fВы поймали необычную коробку!"
 
   # Top massages
-  top: "Топ игроков по количеству открытых коробок: "
-  topIsEmpty: "Топ пуст >_<"
+  top: "&7Топ игроков по количеству открытых коробок: "
+  topIsEmpty: "&7Топ пуст >_<"
 
   # Errors
   # /getbox cmd
-  using: "Используй /getbox <default | normal | epic | mifik | legend>"
-  console: "Эту команду может использовать только игрок"
+  using: "&fИспользуй /getbox <default | normal | epic | mifik | legend>"
+  console: "&fЭту команду может использовать только игрок"
 
 # Chat msg
-# %name% - playername - NOW IT'S NOT WORKING
-# THIS CAN BE FIXED SOON...
+# %name% supported only in chat group
 chat:
 
   # Drop box messages
-  epic: "%name% выловил эпическую коробку!"
-  mifik: "%name% выловил мифическую коробку!"
-  legend: "%name% выловил легендарную коробку!"
+  epic: "&d%name% выловил эпическую коробку!"
+  mifik: "&5%name% выловил мифическую коробку!"
+  legend: "&6%name% выловил легендарную коробку!"
 
 reload:
-  args: "Используйте /lfishing reload"
-  done: "Плагин перезагружен"
+  args: "&cИспользуйте /lfishing reload"
+  done: "&cПлагин перезагружен"
 
 # Box names
 names:
-  default: "Стандартная коробка"
-  normal: "Необычная коробка"
-  epic: "Эпическая коробка"
-  mifik: "Мифическая коробка"
-  legend: "Легендарная коробка"
+  default: "&7Стандартная коробка"
+  normal: "&fНеобычная коробка"
+  epic: "&dЭпическая коробка"
+  mifik: "&5Мифическая коробка"
+  legend: "&6Легендарная коробка"

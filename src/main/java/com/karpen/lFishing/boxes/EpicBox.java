@@ -24,7 +24,7 @@ public class EpicBox implements Listener {
     }
 
     public void openBox(Player player) {
-        Inventory inventory = Bukkit.createInventory(player, 27, ChatColor.DARK_PURPLE + config.getEpicName());
+        Inventory inventory = Bukkit.createInventory(player, 27, ChatColor.translateAlternateColorCodes('&', config.getEpicName()));
         playerInventories.put(player, inventory);
 
         List<ItemStack> items = generateRandomItems();
