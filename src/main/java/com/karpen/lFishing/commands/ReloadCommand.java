@@ -20,14 +20,14 @@ public class ReloadCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length != 1){
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getErrArgs()));
+            sender.sendMessage(ChatColor.RED + config.getErrArgs());
 
             return true;
         }
 
         if (args[0].equalsIgnoreCase("reload")){
             plugin.loadConfig();
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getReloadDone()));
+            sender.sendMessage(ChatColor.GREEN + config.getReloadDone());
 
             return true;
         }

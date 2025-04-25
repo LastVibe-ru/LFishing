@@ -127,9 +127,9 @@ public final class LFishing extends JavaPlugin {
         config.setSkinMifik(configuration.getString("skin.mifik", "https://textures.minecraft.net/texture/2ff4242b1a17cf9ce781a1e33415bb19341f996ec1388ec126ee824af9e72a8d"));
         config.setSkinLegend(configuration.getString("skin.legend", "https://textures.minecraft.net/texture/cdf81449131dcdd3578899fcd9592e13f5cca57ae7481fd6710bb6ca85d65c9"));
 
-        config.setChatEpic(configuration.getString("chat.epic", "%name% выловил эпическую коробку!"));
-        config.setChatMifik(configuration.getString("chat.mifik", "%name% выловил мифическую коробку!"));
-        config.setChatLegend(configuration.getString("chat.legend", "%name% выловил легендарную коробку!"));
+        config.setChatEpic(configuration.getString("chat.epic", "%name% выловил эпическую коробку!").replace("%name%", ""));
+        config.setChatMifik(configuration.getString("chat.mifik", "%name% выловил мифическую коробку!").replace("%name%", ""));
+        config.setChatLegend(configuration.getString("chat.legend", "%name% выловил легендарную коробку!").replace("%name%", ""));
 
         config.setTopMsg(configuration.getString("msg.top", "Топ игроков по количеству открытых коробок: "));
         config.setTopIsEmpty(configuration.getString("msg.topIsEmpty", "Топ пуст >_<"));

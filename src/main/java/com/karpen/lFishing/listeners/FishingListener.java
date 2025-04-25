@@ -63,7 +63,7 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getDefaultMsg()));
+                    event.getPlayer().sendMessage(config.getDefaultMsg());
 
                 } else if (random.nextDouble(0, 100) < config.getEpicLuckChance()) {
                     dropEpicBox(event.getPlayer());
@@ -73,7 +73,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     if (config.getChatty()){
-                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()).replace("%name%", event.getPlayer().getName()));
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.DARK_PURPLE + event.getPlayer().getName() + config.getEpicMsg());
                     }
 
                 } else if (random.nextDouble(0, 100) < config.getNormalLuckChance()) {
@@ -83,7 +83,7 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getNormalMsg()));
+                    event.getPlayer().sendMessage(ChatColor.GREEN + config.getNormalMsg());
 
                 } else if (random.nextDouble(0, 100) < config.getMifikLuckChance()) {
                     dropMifikBox(event.getPlayer());
@@ -93,7 +93,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     if (config.getChatty()){
-                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()).replace("%name%", event.getPlayer().getName()));
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.LIGHT_PURPLE + event.getPlayer().getName() + config.getMifikMsg());
                     }
 
                 } else if (random.nextDouble(0, 100) < config.getLegendLuckChance()) {
@@ -104,7 +104,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     if (config.getChatty()){
-                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()).replace("%name%", event.getPlayer().getName()));
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.GOLD + event.getPlayer().getName() + config.getLegendMsg());
                     }
 
                 }
@@ -116,7 +116,7 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getDefaultMsg()));
+                    event.getPlayer().sendMessage(config.getDefaultMsg());
 
                 } else if (random.nextDouble(0, 100) < config.getEpicChance()) {
                     dropEpicBox(event.getPlayer());
@@ -126,7 +126,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     if (config.getChatty()){
-                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()).replace("%name%", event.getPlayer().getName()));
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.DARK_PURPLE + event.getPlayer().getName() + config.getEpicMsg());
                     }
 
                 } else if (random.nextDouble(0, 100) < config.getNormalChance()) {
@@ -136,7 +136,7 @@ public class FishingListener implements Listener {
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
-                    event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getNormalMsg()));
+                    event.getPlayer().sendMessage(ChatColor.GREEN + config.getNormalMsg());
                 } else if (random.nextDouble(0, 100) < config.getMifikChance()) {
                     dropMifikBox(event.getPlayer());
 
@@ -145,7 +145,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     if (config.getChatty()){
-                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()).replace("%name%", event.getPlayer().getName()));
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.LIGHT_PURPLE + event.getPlayer().getName() + config.getMifikMsg());
                     }
 
                 } else if (random.nextDouble(0, 100) < config.getLegendChance()) {
@@ -156,7 +156,7 @@ public class FishingListener implements Listener {
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
 
                     if (config.getChatty()){
-                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()).replace("%name%", event.getPlayer().getName()));
+                        chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.GOLD + event.getPlayer().getName() + config.getLegendMsg());
                     }
 
                 }
@@ -288,7 +288,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getDefaultName()));
+            meta.setDisplayName(ChatColor.WHITE + config.getDefaultName());
             NamespacedKey key = new NamespacedKey("lfishing", "default_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "default_box");
             item.setItemMeta(meta);
@@ -302,7 +302,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getNormalName()));
+            meta.setDisplayName(ChatColor.GREEN + config.getNormalName());
             NamespacedKey key = new NamespacedKey("lfishing", "normal_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "normal_box");
             item.setItemMeta(meta);
@@ -316,7 +316,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getEpicName()));
+            meta.setDisplayName(ChatColor.DARK_PURPLE + config.getEpicName());
             NamespacedKey key = new NamespacedKey("lfishing", "epic_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "epic_box");
             item.setItemMeta(meta);
@@ -330,7 +330,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getMifikName()));
+            meta.setDisplayName(ChatColor.LIGHT_PURPLE + config.getMifikName());
             NamespacedKey key = new NamespacedKey("lfishing", "mifik_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "mifik_box");
             item.setItemMeta(meta);
@@ -344,7 +344,7 @@ public class FishingListener implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null){
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getLegendName()));
+            meta.setDisplayName(ChatColor.GOLD + config.getLegendName());
             NamespacedKey key = new NamespacedKey("lfishing", "legend_box");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "legend_box");
             item.setItemMeta(meta);

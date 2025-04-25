@@ -24,7 +24,7 @@ public class NormalBox implements Listener {
     }
 
     public void openBox(Player player) {
-        Inventory inventory = Bukkit.createInventory(player, 27, ChatColor.translateAlternateColorCodes('&', config.getNormalName()));
+        Inventory inventory = Bukkit.createInventory(player, 27, ChatColor.GREEN + config.getNormalName());
         playerInventories.put(player, inventory);
 
         List<ItemStack> items = generateRandomItems();
