@@ -2,6 +2,7 @@ package com.karpen.lFishing.commands;
 
 import com.karpen.lFishing.models.Config;
 import com.karpen.lFishing.utils.SkinManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
@@ -11,15 +12,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import ru.mrbrikster.chatty.api.ChattyApi;
 
 public class GetBoxCommand implements CommandExecutor {
 
     private SkinManager skinManager;
     private Config config;
 
-    public GetBoxCommand(SkinManager skinManager, Config config){
+    // FOR TESTS
+    private ChattyApi chattyApi;
+    // REMOVE THIS
+
+    public GetBoxCommand(SkinManager skinManager, Config config, ChattyApi chattyApi){
         this.skinManager = skinManager;
         this.config = config;
+        this.chattyApi = chattyApi;
     }
 
     @Override
@@ -128,6 +135,16 @@ public class GetBoxCommand implements CommandExecutor {
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "legend_box");
             item.setItemMeta(meta);
         }
+
+        // FOR TESTS
+        if (config.getChatty()){
+            chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()).replace("%name%", player.getName()));
+        } else if (config.isUsingBroadcast()) {
+            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()).replace("%name%", player.getName()));
+        } else {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()));
+        }
+        // REMOVE THIS
 
         player.getWorld().dropItem(player.getLocation(), item);
 

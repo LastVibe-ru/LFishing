@@ -4,10 +4,7 @@ import com.karpen.lFishing.boxes.*;
 import com.karpen.lFishing.models.Config;
 import com.karpen.lFishing.utils.SkinManager;
 import com.karpen.lFishing.utils.TopManager;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -72,6 +69,8 @@ public class FishingListener implements Listener {
 
                     if (config.getChatty()){
                         chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()).replace("%name%", event.getPlayer().getName()));
+                    } else if (config.isUsingBroadcast()) {
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()).replace("%name%", event.getPlayer().getName()));
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()));
                     }
@@ -92,6 +91,8 @@ public class FishingListener implements Listener {
 
                     if (config.getChatty()){
                         chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()).replace("%name%", event.getPlayer().getName()));
+                    } else if (config.isUsingBroadcast()) {
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()).replace("%name%", event.getPlayer().getName()));
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()));
                     }
@@ -104,6 +105,8 @@ public class FishingListener implements Listener {
 
                     if (config.getChatty()){
                         chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()).replace("%name%", event.getPlayer().getName()));
+                    } else if (config.isUsingBroadcast()) {
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()).replace("%name%", event.getPlayer().getName()));
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()));
                     }
@@ -126,6 +129,8 @@ public class FishingListener implements Listener {
 
                     if (config.getChatty()){
                         chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()).replace("%name%", event.getPlayer().getName()));
+                    } else if (config.isUsingBroadcast()) {
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg().replace("%name%", event.getPlayer().getName())));
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()));
                     }
@@ -146,6 +151,8 @@ public class FishingListener implements Listener {
 
                     if (config.getChatty()){
                         chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()).replace("%name%", event.getPlayer().getName()));
+                    } else if (config.isUsingBroadcast()) {
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg().replace("%name%", event.getPlayer().getName())));
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()));
                     }
@@ -158,6 +165,8 @@ public class FishingListener implements Listener {
 
                     if (config.getChatty()){
                         chattyApi.getChat(config.getChat()).get().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()).replace("%name%", event.getPlayer().getName()));
+                    } else if (config.isUsingBroadcast()) {
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg().replace("%name%", event.getPlayer().getName())));
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()));
                     }

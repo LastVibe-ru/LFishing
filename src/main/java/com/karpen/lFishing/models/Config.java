@@ -15,6 +15,8 @@ public class Config {
     private boolean usingChatty;
     private String chat;
 
+    private boolean usingBroadcast;
+
     private boolean luckChances;
     private double defaultLuckChance;
     private double normalLuckChance;
@@ -39,10 +41,6 @@ public class Config {
     private String skinEpic;
     private String skinMifik;
     private String skinLegend;
-
-    private String chatEpic;
-    private String chatMifik;
-    private String chatLegend;
 
     private String errArgs;
     private String reloadDone;

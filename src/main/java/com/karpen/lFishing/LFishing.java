@@ -70,7 +70,7 @@ public final class LFishing extends JavaPlugin {
         reloadCommand = new ReloadCommand(config, this);
         reloadCompleter = new ReloadCompleter();
 
-        getBoxCommand = new GetBoxCommand(skinManager, config);
+        getBoxCommand = new GetBoxCommand(skinManager, config, chattyApi);
         getBoxCompleter = new GetBoxCompleter();
 
         topCommand = new TopCommand(topManager, config);
@@ -115,10 +115,23 @@ public final class LFishing extends JavaPlugin {
         config.setUsingChatty(configuration.getBoolean("chatty.using", false));
         config.setChat(configuration.getString("chatty.chat", "global"));
 
+        config.setUsingBroadcast(configuration.getBoolean("broadcast.using", true));
+        
+        if (config.isUsingChatty() && config.isUsingBroadcast()) {
+            getLogger().warning("Don't use chatty mode and broadcast mode together");
+            getLogger().warning("Disabling server");
+
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
+
         config.setDefaultMsg(configuration.getString("msg.default", "Вы поймали стандартную коробку!"));
         config.setNormalMsg(configuration.getString("msg.normal", "Вы поймали стандартную бочку!"));
 
-        if (!config.getChatty()){
+        if (config.isUsingBroadcast() || config.isUsingChatty()) {
+            config.setEpicMsg(configuration.getString("chat.epic", "%name% выловил эпическую коробку!"));
+            config.setMifikMsg(configuration.getString("chat.mifik", "%name% выловил мифическую коробку!"));
+            config.setLegendMsg(configuration.getString("chat.legend", "%name% выловил легендарную коробку!"));
+        } else {
             config.setEpicMsg(configuration.getString("msg.epic", "&dВы выловили эпическую коробку!"));
             config.setMifikMsg(configuration.getString("msg.mifik", "&5Вы выловили мифическую коробку!"));
             config.setLegendMsg(configuration.getString("msg.legend", "&6Вы выловили легендарную коробку!"));
@@ -129,10 +142,6 @@ public final class LFishing extends JavaPlugin {
         config.setSkinEpic(configuration.getString("skin.epic", "https://textures.minecraft.net/texture/a1b96fc7d915b57f683493106704353d8837772dff51b20bf3bda09f2fa8b3ba"));
         config.setSkinMifik(configuration.getString("skin.mifik", "https://textures.minecraft.net/texture/2ff4242b1a17cf9ce781a1e33415bb19341f996ec1388ec126ee824af9e72a8d"));
         config.setSkinLegend(configuration.getString("skin.legend", "https://textures.minecraft.net/texture/cdf81449131dcdd3578899fcd9592e13f5cca57ae7481fd6710bb6ca85d65c9"));
-
-        config.setChatEpic(configuration.getString("chat.epic", "%name% выловил эпическую коробку!"));
-        config.setChatMifik(configuration.getString("chat.mifik", "%name% выловил мифическую коробку!"));
-        config.setChatLegend(configuration.getString("chat.legend", "%name% выловил легендарную коробку!"));
 
         config.setTopMsg(configuration.getString("msg.top", "Топ игроков по количеству открытых коробок: "));
         config.setTopIsEmpty(configuration.getString("msg.topIsEmpty", "Топ пуст >_<"));

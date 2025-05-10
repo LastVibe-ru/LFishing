@@ -23,6 +23,10 @@ luck:
   mifik: 2
   legend: 0.8
 
+# Broadcast messages
+broadcast:
+  using: true
+
 # Chatty api
 chatty:
   using: false
@@ -46,7 +50,7 @@ msg:
   default: "&7Вы поймали стандартную коробку!"
   normal: "&fВы поймали необычную коробку!"
 
-  # If chat api disabled message
+  # If chat api and broadcast disabled message
   epic: "&dВы выловили эпическую коробку!"
   mifik: "&5Вы выловили мифическую коробку!"
   legend: "&6Вы выловили легендарную коробку!"
