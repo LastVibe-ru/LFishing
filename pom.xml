@@ -76,7 +76,6 @@
             <id>funkemunky</id>
             <url>https://nexus.funkemunky.cc/content/repositories/releases/</url>
         </repository>
-
     </repositories>
 
     <dependencies>

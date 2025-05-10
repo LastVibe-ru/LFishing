@@ -2,6 +2,7 @@ package com.karpen.lFishing.boxes;
 
 import com.karpen.lFishing.models.Config;
 import org.bukkit.*;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,7 +46,17 @@ public class DefaultBox implements Listener {
 
         player.playSound(player.getLocation(), Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.0f);
 
-        player.openInventory(inventory);
+        Random random = new Random();
+        int spawnChance = random.nextInt(0, 10);
+
+        if (spawnChance < 1) {
+            int count = random.nextInt(1, 5);
+            for (int i = 0; i < count; i++) {
+                player.getWorld().spawnEntity(player.getLocation(), EntityType.SILVERFISH);
+            }
+        } else {
+            player.openInventory(inventory);
+        }
     }
 
     private List<ItemStack> generateRandomItems() {

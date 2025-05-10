@@ -1,5 +1,5 @@
 # LFishing v1.5.1
-# karpen-dev - https://github.com/karpen-dev/
+# https://github.com/karpen-dev/
 
 # Supported only & colors and §
 
@@ -25,7 +25,7 @@ luck:
 
 # Chatty api
 chatty:
-  using: true
+  using: false
 
   # Chat for chat msg
   chat: "global"
@@ -45,6 +45,11 @@ msg:
   # Drop box messages
   default: "&7Вы поймали стандартную коробку!"
   normal: "&fВы поймали необычную коробку!"
+
+  # If chat api disabled message
+  epic: "&dВы выловили эпическую коробку!"
+  mifik: "&5Вы выловили мифическую коробку!"
+  legend: "&6Вы выловили легендарную коробку!"
 
   # Top massages
   top: "&7Топ игроков по количеству открытых коробок: "

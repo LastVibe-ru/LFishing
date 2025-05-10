@@ -112,14 +112,17 @@ public final class LFishing extends JavaPlugin {
         config.setMifikLuckChance(configuration.getDouble("luck.mifik", 2));
         config.setLegendLuckChance(configuration.getDouble("luck.legend", 0.8));
 
-        config.setUsingChatty(configuration.getBoolean("chatty.using", true));
+        config.setUsingChatty(configuration.getBoolean("chatty.using", false));
         config.setChat(configuration.getString("chatty.chat", "global"));
 
         config.setDefaultMsg(configuration.getString("msg.default", "Вы поймали стандартную коробку!"));
         config.setNormalMsg(configuration.getString("msg.normal", "Вы поймали стандартную бочку!"));
-        config.setEpicMsg(configuration.getString("chat.epic", " выловил эпическую коробку!"));
-        config.setMifikMsg(configuration.getString("chat.mifik", " выловил мифическую коробку!"));
-        config.setLegendMsg(configuration.getString("chat.legend", " выловил легендарную коробку!"));
+
+        if (!config.getChatty()){
+            config.setEpicMsg(configuration.getString("msg.epic", "&dВы выловили эпическую коробку!"));
+            config.setMifikMsg(configuration.getString("msg.mifik", "&5Вы выловили мифическую коробку!"));
+            config.setLegendMsg(configuration.getString("msg.legend", "&6Вы выловили легендарную коробку!"));
+        }
 
         config.setSkinDefault(configuration.getString("skin.default", "https://textures.minecraft.net/texture/2cf5b1cfed1c27dd4c3bef6b9844994739851e46b3fc7fda1cbc25b80ab3b"));
         config.setSkinNormal(configuration.getString("skin.normal", "https://textures.minecraft.net/texture/f7145c0ee1cd493664fb1b26622db0492a1969a659931e7a3362d9071fbd4cf8"));
