@@ -53,15 +53,16 @@ public class FishingListener implements Listener {
     public void onPlayerFishing(PlayerFishEvent event) {
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
             if (config.getLuck() && isLuckRod(event.getPlayer())) {
-                if (random.nextDouble(0, 300) < config.getDefaultLuckChance()) {
+                if (random.nextDouble(0, 500) < config.getBreakFishingRod()) {
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.AMBIENT_WARPED_FOREST_MOOD, 10.0f, 1.0f);
+                } else if (random.nextDouble(0, 500) < config.getDefaultLuckChance()) {
                     dropDefaultBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
-
                     event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getDefaultMsg()));
-                } else if (random.nextDouble(0, 300) < config.getEpicLuckChance()) {
+                } else if (random.nextDouble(0, 500) < config.getEpicLuckChance()) {
                     dropEpicBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
@@ -75,15 +76,14 @@ public class FishingListener implements Listener {
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()));
                     }
-                } else if (random.nextDouble(0, 300) < config.getNormalLuckChance()) {
+                } else if (random.nextDouble(0, 500) < config.getNormalLuckChance()) {
                     dropNormalBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
-
                     event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getNormalMsg()));
-                } else if (random.nextDouble(0, 300) < config.getMifikLuckChance()) {
+                } else if (random.nextDouble(0, 500) < config.getMifikLuckChance()) {
                     dropMifikBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
@@ -97,7 +97,7 @@ public class FishingListener implements Listener {
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()));
                     }
-                } else if (random.nextDouble(0, 300) < config.getLegendLuckChance()) {
+                } else if (random.nextDouble(0, 500) < config.getLegendLuckChance()) {
                     dropLegendBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
@@ -111,23 +111,24 @@ public class FishingListener implements Listener {
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()));
                     }
-                } else if (random.nextDouble(0, 300) < config.getSilverfishChance()) {
+                } else if (random.nextDouble(0, 500) < config.getSilverfishChance()) {
                     Player player = event.getPlayer();
 
                     player.playSound(player, Sound.AMBIENT_CRIMSON_FOREST_ADDITIONS, 1.0f, 10.0f);
-
                     player.getWorld().spawnEntity(player.getLocation(), EntityType.SILVERFISH);
                 }
             } else {
-                if (random.nextDouble(0, 300) < config.getDefaultChance()) {
+                if (random.nextDouble(0, 1000) < config.getBreakFishingRod()) {
+                    event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.AMBIENT_WARPED_FOREST_MOOD, 10.0f, 1.0f);
+                    event.getCaught().remove();
+                } else if (random.nextDouble(0, 500) < config.getDefaultChance()) {
                     dropDefaultBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
-
                     event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getDefaultMsg()));
-                } else if (random.nextDouble(0, 300) < config.getEpicChance()) {
+                } else if (random.nextDouble(0, 500) < config.getEpicChance()) {
                     dropEpicBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
@@ -141,15 +142,14 @@ public class FishingListener implements Listener {
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getEpicMsg()));
                     }
-                } else if (random.nextDouble(0, 300) < config.getNormalChance()) {
+                } else if (random.nextDouble(0, 500) < config.getNormalChance()) {
                     dropNormalBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
 
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 10.0f);
-
                     event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getNormalMsg()));
-                } else if (random.nextDouble(0, 300) < config.getMifikChance()) {
+                } else if (random.nextDouble(0, 500) < config.getMifikChance()) {
                     dropMifikBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
@@ -163,7 +163,7 @@ public class FishingListener implements Listener {
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getMifikMsg()));
                     }
-                } else if (random.nextDouble(0, 300) < config.getLegendChance()) {
+                } else if (random.nextDouble(0, 500) < config.getLegendChance()) {
                     dropLegendBox(event.getPlayer());
 
                     manager.increaseScore(event.getPlayer().getName());
@@ -177,13 +177,16 @@ public class FishingListener implements Listener {
                     } else {
                         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.getLegendMsg()));
                     }
-                } else if (random.nextDouble(0, 300) < config.getSilverfishLuckChance()) {
+                } else if (random.nextDouble(0, 500) < config.getSilverfishLuckChance()) {
                     Player player = event.getPlayer();
 
                     player.playSound(player, Sound.AMBIENT_CRIMSON_FOREST_ADDITIONS, 1.0f, 10.0f);
-
                     player.getWorld().spawnEntity(player.getLocation(), EntityType.SILVERFISH);
                 }
+            }
+
+            if (event.getCaught() != null){
+                event.getCaught().remove();
             }
         }
     }

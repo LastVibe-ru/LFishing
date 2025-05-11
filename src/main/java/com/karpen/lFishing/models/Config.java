@@ -28,6 +28,8 @@ public class Config {
 
     private double silverfishLuckChance;
 
+    private double breakFishingRod;
+
     private String topMsg;
     private String topIsEmpty;
 

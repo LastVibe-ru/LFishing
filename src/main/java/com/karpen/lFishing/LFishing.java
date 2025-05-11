@@ -114,6 +114,8 @@ public final class LFishing extends JavaPlugin {
         config.setLegendLuckChance(configuration.getDouble("luck.legend", 0.8));
         config.setSilverfishLuckChance(configuration.getDouble("luck.silverfish", 10));
 
+        config.setBreakFishingRod(configuration.getDouble("chances.break", 20));
+
         config.setUsingChatty(configuration.getBoolean("chatty.using", false));
         config.setChat(configuration.getString("chatty.chat", "global"));
 
