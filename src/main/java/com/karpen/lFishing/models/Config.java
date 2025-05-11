@@ -12,6 +12,8 @@ public class Config {
     private double mifikChance;
     private double legendChance;
 
+    private double silverfishChance;
+
     private boolean usingChatty;
     private String chat;
 
@@ -23,6 +25,8 @@ public class Config {
     private double epicLuckChance;
     private double mifikLuckChance;
     private double legendLuckChance;
+
+    private double silverfishLuckChance;
 
     private String topMsg;
     private String topIsEmpty;
