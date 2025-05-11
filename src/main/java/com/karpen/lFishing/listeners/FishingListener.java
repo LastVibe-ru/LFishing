@@ -136,10 +136,10 @@ public class FishingListener implements Listener {
 
                     player.playSound(player, Sound.AMBIENT_CRIMSON_FOREST_ADDITIONS, 1.0f, 10.0f);
                     player.getWorld().spawnEntity(player.getLocation(), EntityType.SILVERFISH);
-                }
 
-                if (event.getCaught() != null){
-                    event.getCaught().remove();
+                    if (event.getCaught() != null){
+                        event.getCaught().remove();
+                    }
                 }
             } else {
                 if (random.nextDouble(0, 1000) < config.getBreakFishingRod()) {
