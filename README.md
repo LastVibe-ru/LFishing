@@ -1,12 +1,17 @@
 ## LFishing
-This plugin added boxes to minecraft fishing.
+This plugin added new boxes in default fishing system.
 
-**Only russian locale**
+Boxes:
+- Default
+- Normal
+- Epic
+- Mifik
+- Legend
 
-Чтобы поставить коробку как декорацию, используйте вторую руку.
+To place the box as a decoration, use your other hand.
 
-Плагин изменяет систему рыбалки, добавляя в нее коробки.   
-Для отправки сообщений о вылавливании бокса нужен ``Chatty``.  
-Если вам это не нужно ``chatty: using: false``
-
-Шансы с удачей и без можно менять в конфиге.
+Commands - permission:
+- ``/getbox <box name>`` - ``karpen.lfishing.getbox``
+- ``/lfishing reload`` - ``karpen.lfishing.reload``
+- ``/edititems`` - ``karpen.lfishing.edit``
+- ``/topbox`` - none

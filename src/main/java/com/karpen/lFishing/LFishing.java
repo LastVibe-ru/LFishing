@@ -162,6 +162,10 @@ public final class LFishing extends JavaPlugin {
         config.setLegendName(configuration.getString("names.legend", "Легендарная коробка"));
     }
 
+    public static JavaPlugin getInstance() {
+        return getInstance();
+    }
+
     @Override
     public void onDisable() {
         // Plugin shutdown logic
